@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 class App extends React.Component {
   constructor(props){
@@ -58,27 +57,31 @@ class App extends React.Component {
     return (
       
       <div className="wrapper">
-        <header className="box header">
-          <div id="pigImage">
-            <img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" id="butcherPig"></img>
-          </div>
+        <header className="">
+        <h1 class="pt-5 text-center">Pig Latin Translator</h1>
+          <img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" class="img-fluid p-5" ></img>
         </header>
-        <sidebar className="box sidebar">
-          <div>
-            <form className="info" onSubmit={this.translate}>
+        
+        <sidebar>
+        </sidebar>
+        
+        <main>
+        <div className="container-fluid row">
+          <div className="col-sm-6">
+            <form className="" onSubmit={this.translate}>
               <label htmlFor="input-phrase">Translate this: </label>
-              <input name="input-phrase" onChange={this.handleChange}></input>
-              <input className="button" type="submit" value="Submit" />
+              <input name="" onChange={this.handleChange}></input>
+              <input className="" type="submit" value="Submit" />
             </form>
           </div>
-        </sidebar>
-        <main>
-          <div className="text-center box content">
+          <div className="col-sm-6">
             <p>{this.state.phraseTranslated}</p>
           </div>
+        </div>
+          
         </main>
-        <footer className="box footer">
-          <div className="text-center">
+        <footer className="">
+          <div className="">
             <p>Coded by Lisa and Benjamin</p>
           </div>
         </footer>
@@ -86,5 +89,7 @@ class App extends React.Component {
     );
   }
 }
+// className="box sidebar"
 
+//<img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" id="butcherPig" ></img>
 export default App;
