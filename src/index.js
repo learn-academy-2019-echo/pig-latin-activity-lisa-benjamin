@@ -5,5 +5,5 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
+console.log('Being sent to browser')
 serviceWorker.unregister();

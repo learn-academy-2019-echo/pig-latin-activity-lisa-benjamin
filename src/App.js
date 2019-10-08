@@ -14,8 +14,47 @@ class App extends React.Component {
 
   translate = (e) => {
     e.preventDefault()
-    let translated = this.state.phrase
+    //let translated = this.translateWord(this.state.phrase)
+    let translated = this.state.phrase.split(' ').map(this.translateWordToPigLatin).join(' ')
     this.setState({phraseTranslated: translated})
+  }
+  
+  
+  translateWordToPigLatin = word => {
+    const vowelsArray = ['a','e','i','o','u']
+    //TODO handle caps
+    
+    const capitalStatesArray = word.split('').map(letter => letter.charCodeAt(0) < 91)
+    console.log(capitalStatesArray)
+    // const setCapitalStates2 = word.split('').map(letter => letter === letter.toUpperCase())
+    // console.log(setCapitalStates2)
+    
+    if (vowelsArray.includes(word[0])) {
+      return word + 'way'
+    }
+    
+    let indexOfFirstVowel = -1
+    let isQuCase = false
+
+    word.split('').forEach((letter, index) => {
+      if(vowelsArray.includes(letter) && indexOfFirstVowel === -1){
+        indexOfFirstVowel = index
+        if (letter === 'u' &&  vowelsArray.includes(word[index +1]) && word[index -1] === 'q'){
+          isQuCase = true
+        }
+      }
+      //TODO: handle words without vowels
+    })
+    
+   let pigLatin = ""
+   
+   if(isQuCase){
+     pigLatin = word.slice(indexOfFirstVowel + 1) + word.slice(0,indexOfFirstVowel +1) + 'ay'
+   }else {
+     pigLatin = word.slice(indexOfFirstVowel) + word.slice(0,indexOfFirstVowel) + 'ay'
+   }
+    console.log(pigLatin.split('').map((letter, index) => capitalStatesArray[index] ? letter.toUpperCase() : letter.toLowerCase()).join(''))
+    return pigLatin
   }
 
   handleChange = (e) => {
