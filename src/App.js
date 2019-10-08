@@ -58,19 +58,21 @@ class App extends React.Component {
       
       <div className="wrapper">
         <header className="">
-        <h1 class="pt-5 text-center">Pig Latin Translator</h1>
-          <img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" class="img-fluid p-5" ></img>
+          <h1 className="pt-5 text-center">Pig Latin Translator</h1>
+          <img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" className="img-fluid p-5" ></img>
         </header>
         
         <sidebar>
         </sidebar>
         
         <main>
-        <div className="container-fluid row">
+        <div className="row">
           <div className="col-sm-6">
             <form className="" onSubmit={this.translate}>
               <label htmlFor="input-phrase">Translate this: </label>
-              <input name="" onChange={this.handleChange}></input>
+              <br /> 
+              <textarea className="form-control" onChange={this.handleChange}></textarea>
+              <br />
               <input className="" type="submit" value="Submit" />
             </form>
           </div>
@@ -81,7 +83,7 @@ class App extends React.Component {
           
         </main>
         <footer className="">
-          <div className="">
+          <div className="d-flex justify-content-center">
             <p>Coded by Lisa and Benjamin</p>
           </div>
         </footer>
@@ -89,7 +91,5 @@ class App extends React.Component {
     );
   }
 }
-// className="box sidebar"
 
-//<img src='https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400' alt="pig with butcher cut names in pig latin" id="butcherPig" ></img>
 export default App;
