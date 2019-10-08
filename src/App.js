@@ -9,12 +9,9 @@ class App extends React.Component {
       phraseTranslated: 'This is where your translated sentence will appear.'
     }
   }
-  
-  // The translate function is where you will put your logic to convert the sentence entered by the user to pig location.  What is currently in the function will only directly copy what the user has entered.
 
   translate = (e) => {
     e.preventDefault()
-    //let translated = this.translateWord(this.state.phrase)
     let translated = this.state.phrase.split(' ').map(this.translateWordToPigLatin).join(' ')
     this.setState({phraseTranslated: translated})
   }
@@ -22,39 +19,35 @@ class App extends React.Component {
   
   translateWordToPigLatin = word => {
     const vowelsArray = ['a','e','i','o','u']
-    //TODO handle caps
-    
-    const capitalStatesArray = word.split('').map(letter => letter.charCodeAt(0) < 91)
-    console.log(capitalStatesArray)
-    // const setCapitalStates2 = word.split('').map(letter => letter === letter.toUpperCase())
-    // console.log(setCapitalStates2)
-    
+    const capitalStatesArray = word.split('').map(letter => (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <= 90))
+    const isPunctuated = [',','!','.','?',';'].includes(word[word.length-1]) // save state of punctuation 
+      
     if (vowelsArray.includes(word[0])) {
       return word + 'way'
     }
     
+    if(word.match(/[^A-Za-z0-9,!.?;]/g) && !isPunctuated){
+      return word
+    }
+
     let indexOfFirstVowel = -1
-    let isQuCase = false
 
     word.split('').forEach((letter, index) => {
       if(vowelsArray.includes(letter) && indexOfFirstVowel === -1){
         indexOfFirstVowel = index
         if (letter === 'u' &&  vowelsArray.includes(word[index +1]) && word[index -1] === 'q'){
-          isQuCase = true
+          indexOfFirstVowel += 1
         }
       }
-      //TODO: handle words without vowels
     })
     
-   let pigLatin = ""
+  
+   const pigLatin = (isPunctuated ? word.slice(indexOfFirstVowel, -1) : word.slice(indexOfFirstVowel)) + word.slice(0,indexOfFirstVowel) + 'ay' + (isPunctuated ? word.slice(-1) : '')
+   //TODO: handle words without vowels
    
-   if(isQuCase){
-     pigLatin = word.slice(indexOfFirstVowel + 1) + word.slice(0,indexOfFirstVowel +1) + 'ay'
-   }else {
-     pigLatin = word.slice(indexOfFirstVowel) + word.slice(0,indexOfFirstVowel) + 'ay'
-   }
-    console.log(pigLatin.split('').map((letter, index) => capitalStatesArray[index] ? letter.toUpperCase() : letter.toLowerCase()).join(''))
-    return pigLatin
+    
+    
+    return pigLatin.split('').map((letter, index) => capitalStatesArray[index] ? letter.toUpperCase() : letter.toLowerCase()).join('')
   }
 
   handleChange = (e) => {
@@ -86,7 +79,7 @@ class App extends React.Component {
         </main>
         <footer className="box footer">
           <div className="text-center">
-            <p>Coded by * * *</p>
+            <p>Coded by Lisa and Benjamin</p>
           </div>
         </footer>
       </div>
